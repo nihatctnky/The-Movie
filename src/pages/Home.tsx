@@ -1,41 +1,75 @@
-
-
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './../componets/Header';
 
-const Home = () => {
-    return (
-        <div>
-            <Header />
-            <main className="container mx-auto p-4 ">
-                <h2 className="text-3xl font-bold mb-4">Featured Movies</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div className="bg-gray-800 p-4 rounded-lg">
-                        <img
-                            src="Atatürk.png"
-                            alt="Atatürk"
-                            className="w-full object-cover mb-4 rounded"
-                            style={{ height: '600px' }} // Burada custom yükseklik veriyoruz
-                        />
-                        <h3 className="text-xl text-white hover:text-yellow-500">Atatürk</h3>
-                    </div>
+interface Movie {
+    id: number;
+    title: string;
+    description: string;
+    year: number;
+    image: string;
+}
 
-                    <div className="bg-gray-800 p-4 rounded-lg">
-                        <img src="Mortal.png" alt="Mortal" className="w-full  object-cover mb-4 rounded"
-                            style={{ height: '600px' }} />
-                        <h3 className="text-xl text-white hover:text-yellow-500">Mortal Kombat</h3>
-                    </div>
-                    <div className="bg-gray-800 p-4 rounded-lg">
-                        <img src="sticker.png" alt="sticker" className="w-full h-854 object-cover mb-4 rounded"
-                            style={{ height: '600px' }} />
-                        <h3 className="text-xl text-white hover:text-yellow-500">Transporter</h3>
-                    </div>
-                    <div className="bg-gray-800 p-4 rounded-lg">
-                        <img src="images.png" alt="images" className="w-full h-854 object-cover mb-4 rounded"
-                            style={{ height: '600px' }} />
-                        <h3 className="text-xl text-white hover:text-yellow-500">Hogar</h3>
-                    </div>
-                </div>
-            </main>
+const Home = () => {
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        fetch('/movies.json')
+            .then((response) => response.json())
+            .then((data) => {
+                setMovies(data.films);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Veri yüklenirken hata oluştu: ', error);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return <div className="text-center text-lg">Yükleniyor...</div>;
+    }
+
+    const handleFavoriteClick = (movieId: number) => {
+
+        alert(`Movie ${movieId} favorilere eklendi!`);
+    };
+
+    return (
+        <div className="bg-black text-white min-h-screen">
+            <Header />
+            <div className="text-center py-12 ">
+                <h1 className="text-4xl font-bold">
+                    <span className="text-red-600">Film</span>
+                    <span className="text-white"> Listesi</span>
+                </h1>
+            </div>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
+                {movies.map((movie) => (
+                    <li key={movie.id} className="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                        <Link to={`/detail/${movie.id}`} className="block text-center">
+                            <img
+                                src={`/${movie.image}`}
+                                alt={movie.title}
+                                className="w-full h-48 object-cover rounded-t-lg mb-4"
+                            />
+                            <h3 className="text-xl font-semibold text-gray-700">{movie.title}</h3>
+                            <p className="text-gray-600 text-sm mt-2 line-clamp-3">{movie.description}</p>
+                        </Link>
+
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                onClick={() => handleFavoriteClick(movie.id)}
+                                className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition-colors duration-300"
+                            >
+                                Favorilere Ekle
+                            </button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
