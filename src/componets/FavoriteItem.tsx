@@ -15,7 +15,7 @@ interface FavoriteItemProps {
 
 const FavoriteItem: FC<FavoriteItemProps> = ({ movie, onRemoveFromFavorites }) => {
     const handleRemove = () => {
-        onRemoveFromFavorites(movie.id, movie.title); // Sadece favori çıkarma işlemi yapılır
+        onRemoveFromFavorites(movie.id, movie.title)
     };
 
     return (

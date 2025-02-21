@@ -23,7 +23,7 @@ const Home = () => {
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data.films);
-                setFilteredMovies(data.films); // Başlangıçta tüm filmleri göster
+                setFilteredMovies(data.films);
                 setLoading(false);
             })
             .catch((error) => {
@@ -46,17 +46,17 @@ const Home = () => {
         if (movie) {
             if (savedFavorites.some((fav) => fav.id === movieId)) {
                 toast.info("Bu film zaten favorilere ekli!", {
-                    position: "top-right", // Sağ üst köşe
-                    autoClose: 3000, // 3 saniye açık kalsın
-                    style: { backgroundColor: "black", color: "red" }, // Arka plan siyah, yazı kırmızı
+                    position: "top-right",
+                    autoClose: 3000,
+                    style: { backgroundColor: "black", color: "red" },
                 });
             } else {
                 savedFavorites.push(movie);
                 localStorage.setItem("favorites", JSON.stringify(savedFavorites));
                 toast.success(`${movie.title} favorilere eklendi!`, {
-                    position: "top-right", // Sağ üst köşe
-                    autoClose: 3000, // 3 saniye açık kalsın
-                    style: { backgroundColor: "black", color: "red" }, // Arka plan siyah, yazı kırmızı
+                    position: "top-right",
+                    autoClose: 3000,
+                    style: { backgroundColor: "black", color: "red" },
                 });
             }
         }
@@ -64,7 +64,7 @@ const Home = () => {
 
     return (
         <div className="bg-black text-white min-h-screen">
-            <Header onSearch={handleSearch} /> {/* Arama fonksiyonunu Header bileşenine geçirdik */}
+            <Header onSearch={handleSearch} />
             <div className="text-center py-12">
                 <h1 className="text-4xl font-bold">
                     <span className="text-red-600">Film</span>
@@ -73,19 +73,19 @@ const Home = () => {
             </div>
 
             {loading ? (
-                <Loading /> // Yükleniyor componentini göster
+                <Loading />
             ) : (
                 <MovieList movies={filteredMovies} onFavoriteClick={handleFavoriteClick} />
             )}
 
-            {/* ToastContainer: Toastify uyarılarını göstermek için */}
+
             <ToastContainer
-                position="top-right" // Sağ üst köşe
-                autoClose={3000} // 3 saniye sonra kaybolacak
-                hideProgressBar={true} // İlerleme çubuğunu gizle
-                newestOnTop={true} // En yeni toast, üstte gözüksün
-                closeButton={false} // Kapatma butonunu kaldır
-                style={{ backgroundColor: 'black', color: 'red' }} // Arka plan siyah, yazı kırmızı
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={true}
+                newestOnTop={true}
+                closeButton={false}
+                style={{ backgroundColor: 'black', color: 'red' }}
             />
         </div>
     );

@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { FC } from "react";
 
 interface HeaderProps {
-    onSearch: (query: string) => void; // Arama fonksiyonu
+    onSearch: (query: string) => void;
 }
 
 const Header: FC<HeaderProps> = ({ onSearch }) => {
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onSearch(e.target.value); // Arama kutusundaki her değişiklikte onSearch fonksiyonu çağrılacak
+        onSearch(e.target.value);
     };
 
     return (
@@ -28,7 +28,7 @@ const Header: FC<HeaderProps> = ({ onSearch }) => {
                     type="text"
                     placeholder="Search Movies..."
                     className="w-full md:w-3/4 border rounded-md px-3 py-2 outline-none text-black shadow-lg shadow-red-600"
-                    onChange={handleSearch} // Burada arama kutusundaki değişikliği handleSearch fonksiyonu ile alıyoruz
+                    onChange={handleSearch}
                 />
                 <CiSearch size={28} />
             </div>

@@ -1,6 +1,6 @@
-// components/MovieList.tsx
+
 import { FC } from 'react';
-import MovieCard from './MovieCard'; // MovieCard bileşenini içe aktarıyoruz
+import MovieCard from './MovieCard';
 
 interface Movie {
     id: number;
