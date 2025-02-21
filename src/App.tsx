@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Detail from './pages/Detail';
+import { FC, ReactElement } from "react";
 
-
-const App = () => {
+const App: FC = (): ReactElement => {
   return (
     <Router>
       <Routes>

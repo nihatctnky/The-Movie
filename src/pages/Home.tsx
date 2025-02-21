@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from './../componets/Header';
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Header from "./../componets/Header";
+import Loading from "./../componets/Loading";
+import MovieList from "./../componets/MovieList";
 
 interface Movie {
     id: number;
@@ -12,64 +15,78 @@ interface Movie {
 
 const Home = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
+    const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        fetch('/movies.json')
+        fetch("/movies.json")
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data.films);
+                setFilteredMovies(data.films); // Başlangıçta tüm filmleri göster
                 setLoading(false);
             })
             .catch((error) => {
-                console.error('Veri yüklenirken hata oluştu: ', error);
+                console.error("Veri yüklenirken hata oluştu: ", error);
                 setLoading(false);
             });
     }, []);
 
-    if (loading) {
-        return <div className="text-center text-lg">Yükleniyor...</div>;
-    }
+    const handleSearch = (query: string) => {
+        const filtered = movies.filter((movie) =>
+            movie.title.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredMovies(filtered);
+    };
 
     const handleFavoriteClick = (movieId: number) => {
+        const savedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+        const movie = movies.find((movie) => movie.id === movieId);
 
-        alert(`Movie ${movieId} favorilere eklendi!`);
+        if (movie) {
+            if (savedFavorites.some((fav) => fav.id === movieId)) {
+                toast.info("Bu film zaten favorilere ekli!", {
+                    position: "top-right", // Sağ üst köşe
+                    autoClose: 3000, // 3 saniye açık kalsın
+                    style: { backgroundColor: "black", color: "red" }, // Arka plan siyah, yazı kırmızı
+                });
+            } else {
+                savedFavorites.push(movie);
+                localStorage.setItem("favorites", JSON.stringify(savedFavorites));
+                toast.success(`${movie.title} favorilere eklendi!`, {
+                    position: "top-right", // Sağ üst köşe
+                    autoClose: 3000, // 3 saniye açık kalsın
+                    style: { backgroundColor: "black", color: "red" }, // Arka plan siyah, yazı kırmızı
+                });
+            }
+        }
     };
 
     return (
         <div className="bg-black text-white min-h-screen">
-            <Header />
-            <div className="text-center py-12 ">
+            <Header onSearch={handleSearch} /> {/* Arama fonksiyonunu Header bileşenine geçirdik */}
+            <div className="text-center py-12">
                 <h1 className="text-4xl font-bold">
                     <span className="text-red-600">Film</span>
                     <span className="text-white"> Listesi</span>
                 </h1>
             </div>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-                {movies.map((movie) => (
-                    <li key={movie.id} className="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                        <Link to={`/detail/${movie.id}`} className="block text-center">
-                            <img
-                                src={`/${movie.image}`}
-                                alt={movie.title}
-                                className="w-full h-48 object-cover rounded-t-lg mb-4"
-                            />
-                            <h3 className="text-xl font-semibold text-gray-700">{movie.title}</h3>
-                            <p className="text-gray-600 text-sm mt-2 line-clamp-3">{movie.description}</p>
-                        </Link>
 
+            {loading ? (
+                <Loading /> // Yükleniyor componentini göster
+            ) : (
+                <MovieList movies={filteredMovies} onFavoriteClick={handleFavoriteClick} />
+            )}
 
-                        <div className="flex justify-center mt-4">
-                            <button
-                                onClick={() => handleFavoriteClick(movie.id)}
-                                className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition-colors duration-300"
-                            >
-                                Favorilere Ekle
-                            </button>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            {/* ToastContainer: Toastify uyarılarını göstermek için */}
+            <ToastContainer
+                position="top-right" // Sağ üst köşe
+                autoClose={3000} // 3 saniye sonra kaybolacak
+                hideProgressBar={true} // İlerleme çubuğunu gizle
+                newestOnTop={true} // En yeni toast, üstte gözüksün
+                closeButton={false} // Kapatma butonunu kaldır
+                style={{ backgroundColor: 'black', color: 'red' }} // Arka plan siyah, yazı kırmızı
+            />
         </div>
     );
 };

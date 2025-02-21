@@ -1,34 +1,47 @@
-import { Link } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
+import { MdFavoriteBorder } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { FC } from "react";
 
-const Header = () => {
+interface HeaderProps {
+    onSearch: (query: string) => void; // Arama fonksiyonu
+}
+
+const Header: FC<HeaderProps> = ({ onSearch }) => {
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onSearch(e.target.value); // Arama kutusundaki her değişiklikte onSearch fonksiyonu çağrılacak
+    };
+
     return (
-        <header className="bg-black text-white py-4">
-            <div className="container mx-auto px-4 flex justify-between items-center">
-                <h1 className="text-3xl font-bold">
-                    <Link to="/" className="text-red-600 hover:text-white">
+        <header className="p-3 flex justify-between items-center gap-5">
+            <div className="p-2 cursor-pointer hover:opacity-80">
+                <Link to="/">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold flex items-center gap-1">
                         <span className="text-red-600">Film</span> <span className="text-white">Listesi</span>
+                    </h1>
+                </Link>
+            </div>
+
+            <div className="flex items-center gap-1 w-full md:w-3/4 justify-center p-2">
+                <input
+                    type="text"
+                    placeholder="Search Movies..."
+                    className="w-full md:w-3/4 border rounded-md px-3 py-2 outline-none text-black shadow-lg shadow-red-600"
+                    onChange={handleSearch} // Burada arama kutusundaki değişikliği handleSearch fonksiyonu ile alıyoruz
+                />
+                <CiSearch size={28} />
+            </div>
+
+            <div className="flex gap-6 items-center mx-auto">
+                <div className="flex gap-6 items-center">
+                    <Link to="/" className="hover:text-red-500">
+                        <FaHome size={28} />
                     </Link>
-                </h1>
-                <nav>
-                    <ul className="flex space-x-6">
-                        <li>
-                            <Link
-                                to="/"
-                                className="text-white hover:text-red-600 transition-colors duration-300"
-                            >
-                                Ana Sayfa
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/favorites"
-                                className="text-white hover:text-red-600 transition-colors duration-300"
-                            >
-                                Favoriler
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+                    <Link to="/favorites" className="hover:text-pink-500">
+                        <MdFavoriteBorder size={28} />
+                    </Link>
+                </div>
             </div>
         </header>
     );
