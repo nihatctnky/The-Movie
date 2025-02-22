@@ -1,17 +1,26 @@
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Detail from './pages/Detail';
-import { FC, ReactElement } from "react";
+import { FC, useState } from 'react';
+import Header from './components/Header';
 
-const App: FC = (): ReactElement => {
+// App bileşeni
+const App: FC = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Arama fonksiyonu
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
   return (
     <Router>
+      <Header onSearch={handleSearch} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/movie/:id" element={<Detail />} />
       </Routes>
     </Router>
   );

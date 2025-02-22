@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import FavoriteItem from './../componets/FavoriteItem';
-import Header from './../componets/Header';
+import FavoriteItem from '../components/FavoriteItem';
+
 
 interface Movie {
     id: number;
@@ -35,9 +35,9 @@ const Favorites = () => {
 
     return (
         <div className="bg-black text-white min-h-screen">
-            <Header />
+
             <div className="container mx-auto text-center py-8">
-                <h1 className="text-4xl font-bold text-white p-6">
+                <h1 className="text-4xl font-bold text-white p-6 mb-14">
                     {favorites.length === 0 ? 'Favoriler' : 'Favori Filmler'}
                 </h1>
                 {favorites.length === 0 ? (

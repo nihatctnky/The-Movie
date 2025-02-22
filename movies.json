@@ -5,84 +5,200 @@
             "title": "The Shawshank Redemption",
             "description": "A man wrongfully imprisoned for murder forms a life-changing friendship with a fellow inmate.",
             "year": 1994,
-            "image": "shawshank.png"
+            "image": "/images/shawshank.png",
+            "rating": 9.3,
+            "viewCount": 12000,
+            "isTrending": false
         },
         {
             "id": 2,
             "title": "The Dark Knight",
             "description": "Batman faces his most formidable foe, the Joker, who aims to plunge Gotham into anarchy.",
             "year": 2008,
-            "image": "dark_knight.png"
+            "image": "/images/dark_knight.png",
+            "rating": 9.0,
+            "viewCount": 15000,
+            "isTrending": true
         },
         {
             "id": 3,
             "title": "Inception",
             "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the task of planting an idea into the mind of a CEO.",
             "year": 2010,
-            "image": "inception.png"
+            "image": "/images/inception.png",
+            "rating": 8.8,
+            "viewCount": 8000,
+            "isTrending": false
         },
         {
             "id": 4,
             "title": "Forrest Gump",
             "description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Civil Rights Movement, and other historical events unfold from the perspective of an Alabama man with an extraordinary degree of luck.",
             "year": 1994,
-            "image": "forrest_gump.png"
+            "image": "/images/forrest_gump.png",
+            "rating": 8.8,
+            "viewCount": 5000,
+            "isTrending": false
         },
         {
             "id": 5,
             "title": "The Matrix",
             "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
             "year": 1999,
-            "image": "matrix.png"
+            "image": "/images/matrix.png",
+            "rating": 8.7,
+            "viewCount": 10000,
+            "isTrending": true
         },
         {
             "id": 6,
             "title": "Gladiator",
             "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
             "year": 2000,
-            "image": "gladiator.png"
+            "image": "/images/gladiator.png",
+            "rating": 8.5,
+            "viewCount": 7000,
+            "isTrending": false
         },
         {
             "id": 7,
             "title": "The Godfather",
             "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
             "year": 1972,
-            "image": "godfather.png"
+            "image": "/images/godfather.png",
+            "rating": 9.2,
+            "viewCount": 11000,
+            "isTrending": false
         },
         {
             "id": 8,
             "title": "Pulp Fiction",
             "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
             "year": 1994,
-            "image": "pulp_fiction.png"
+            "image": "/images/pulp_fiction.png",
+            "rating": 8.9,
+            "viewCount": 9000,
+            "isTrending": false
         },
         {
             "id": 9,
             "title": "Fight Club",
             "description": "An insomniac office worker and a soap salesman form an underground fight club that evolves into much more.",
             "year": 1999,
-            "image": "fight_club.png"
+            "image": "/images/fight_club.png",
+            "rating": 8.8,
+            "viewCount": 13000,
+            "isTrending": false
         },
         {
             "id": 10,
             "title": "Interstellar",
             "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
             "year": 2014,
-            "image": "interstellar.png"
+            "image": "/images/interstellar.png",
+            "rating": 8.6,
+            "viewCount": 14000,
+            "isTrending": true
         },
         {
             "id": 11,
             "title": "The Silence of the Lambs",
             "description": "A young FBI cadet must confide in an incarcerated and manipulative killer to receive his help on catching another serial killer who skins his victims.",
             "year": 1991,
-            "image": "silence_of_the_lambs.png"
+            "image": "/images/silence_of_the_lambs.png",
+            "rating": 8.6,
+            "viewCount": 6000,
+            "isTrending": false
         },
         {
             "id": 12,
             "title": "The Prestige",
             "description": "Two magicians engage in a bitter rivalry, sacrificing everything to discover each other's secrets.",
             "year": 2006,
-            "image": "prestige.png"
+            "image": "/images/prestige.png",
+            "rating": 8.5,
+            "viewCount": 8500,
+            "isTrending": true
+        },
+        {
+            "id": 13,
+            "title": "The Social Network",
+            "description": "The story of the founding of Facebook, focusing on the legal battles that followed its rise.",
+            "year": 2010,
+            "image": "/images/social_network.png",
+            "rating": 8.0,
+            "viewCount": 9000,
+            "isTrending": false
+        },
+        {
+            "id": 14,
+            "title": "Shutter Island",
+            "description": "A U.S. Marshal investigates the disappearance of a prisoner from a mental institution on an isolated island.",
+            "year": 2010,
+            "image": "/images/shutter_island.png",
+            "rating": 8.2,
+            "viewCount": 7000,
+            "isTrending": true
+        },
+        {
+            "id": 15,
+            "title": "The Revenant",
+            "description": "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead.",
+            "year": 2015,
+            "image": "/images/revenant.png",
+            "rating": 8.0,
+            "viewCount": 11000,
+            "isTrending": false
+        },
+        {
+            "id": 16,
+            "title": "The Wolf of Wall Street",
+            "description": "Based on the true story of Jordan Belfort, a stockbroker who was involved in crime and corruption on Wall Street.",
+            "year": 2013,
+            "image": "/images/wolf_of_wall_street.png",
+            "rating": 8.2,
+            "viewCount": 14000,
+            "isTrending": true
+        },
+        {
+            "id": 17,
+            "title": "Django Unchained",
+            "description": "A freed slave sets out to rescue his wife from a brutal plantation owner with the help of a bounty hunter.",
+            "year": 2012,
+            "image": "/images/django.png",
+            "rating": 8.4,
+            "viewCount": 13000,
+            "isTrending": false
+        },
+        {
+            "id": 18,
+            "title": "Mad Max: Fury Road",
+            "description": "In a post-apocalyptic wasteland, Max teams up with a warrior named Furiosa to escape a tyrannical warlord and his army.",
+            "year": 2015,
+            "image": "/images/mad_max.png",
+            "rating": 5.1,
+            "viewCount": 7000,
+            "isTrending": true
+        },
+        {
+            "id": 19,
+            "title": "The Grand Budapest Hotel",
+            "description": "The adventures of Gustave H, a legendary concierge at a famous hotel, and Zero Moustafa, the lobby boy who becomes his most trusted friend.",
+            "year": 2014,
+            "image": "/images/grand_budapest.png",
+            "rating": 8.1,
+            "viewCount": 8000,
+            "isTrending": false
+        },
+        {
+            "id": 20,
+            "title": "Guardians of the Galaxy",
+            "description": "A group of intergalactic criminals must pull together to stop a fanatical warrior from taking control of the universe.",
+            "year": 2014,
+            "image": "/images/guardians_of_the_galaxy.png",
+            "rating": 8.0,
+            "viewCount": 9500,
+            "isTrending": true
         }
     ]
 }
